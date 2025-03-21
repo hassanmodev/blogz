@@ -6,6 +6,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { UserService } from '../user/user.service';
 import { PrismaModule } from '../prisma/prisma.module'; // Import PrismaModule
+import { JwtStrategy } from './jwt.strategy';
 
 export const jwtConfig = {
   secret: process.env.JWT_SECRET || 'secret_key',
@@ -18,7 +19,7 @@ export const jwtConfig = {
     JwtModule.register(jwtConfig),
     PrismaModule,
   ],
-  providers: [AuthService, UserService],
+  providers: [AuthService, UserService, JwtStrategy],
   controllers: [AuthController],
   exports: [AuthService],
 })
