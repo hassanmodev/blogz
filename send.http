@@ -1,0 +1,49 @@
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imdvb2RAbWFpbC5jb20iLCJzdWIiOiI1MjAwODcwNy1jZWQwLTRmODEtODQwMi0xYTBjMTVhZmY5YTQiLCJpYXQiOjE3NDI1MjA5MjgsImV4cCI6MTc0MjUyNDUyOH0.Sej3UCEfvVfOHGquXcanvSpPgrhFq9dwi0g3W8OPy7g
+
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "email": "good@mail.com",
+  "password": "123456"
+}
+
+###
+
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+  "email": "good@mail.com",
+  "password": "123456",
+  "name": "Good"
+}
+
+###
+
+GET http://localhost:3000/auth/me
+Authorization: Bearer {{token}}
+
+
+
+###
+
+DELETE  http://localhost:3000/posts/23fb843c-bf71-4175-8e46-5fe4421d99d5
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+###
+
+GET http://localhost:3000/posts
+Content-Type: application/json
+
+###
+
+POST http://localhost:3000/posts
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "title": "Post 1",
+  "content": "Content 1"
+}
