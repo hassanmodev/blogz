@@ -27,7 +27,7 @@ export class AuthService {
         },
       });
 
-      return this.login({ email, id: user.id });
+      return this.login({ email, id: user.id, name });
     }
     catch (error: any) {
       if ((error as Prisma.PrismaClientKnownRequestError).code === 'P2002')
@@ -55,8 +55,8 @@ export class AuthService {
     throw new UnauthorizedException('Invalid credentials');
   }
 
-  login(user: { email: string, id: string }): { access_token: string } {
-    const payload = { email: user.email, sub: user.id };
+  login(user: { email: string, id: string, name: string }): { access_token: string } {
+    const payload = { email: user.email, sub: user.id, name: user.name };
     return {
       access_token: this.jwtService.sign(payload),
     };

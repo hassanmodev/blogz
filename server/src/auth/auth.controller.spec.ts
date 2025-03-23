@@ -9,7 +9,6 @@ import { AuthService } from './auth.service';
 describe('AuthController', () => {
   let controller: AuthController;
   const randomUser = generateRandomUser();
-  let token: string = '';
 
   beforeEach(async () => {
     const module: TestingModule = await Test
@@ -34,7 +33,6 @@ describe('AuthController', () => {
 
   it('should login a user', async () => {
     const result = await controller.login({ email: randomUser.email, password: randomUser.password });
-    token = result.access_token;
     expect(result.access_token).toBeDefined();
   });
 
