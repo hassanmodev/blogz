@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useLoginMutation } from "../features/auth/authAPI";
 import { useDispatch } from "react-redux";
-import { login } from "../features/auth/authSlice";
+import { login, setToken } from "../features/auth/authSlice";
 import { toast } from "react-toastify";
 import { AuthInput } from "./SignupModal";
 
@@ -18,17 +18,21 @@ const LoginModal = (props: { closeModal: () => void }) => {
       dispatch(login());
       const result = await loginMutate({ email, password }).unwrap();
       localStorage.setItem('token', result.access_token);
+      dispatch(setToken(result.access_token));
       toast.success('Logged in, Welcome back!');
+
       props.closeModal();
     } catch (err) {
       const error = err as { data: { message: string } };
-      toast.error(error.data.message);
+      toast.error(error?.data?.message);
+      console.error(error);
+      toast.error('Failed to login');
     }
   }
   return (
     <div className='min-w-lg p-4 mx-auto rounded-md shadow-lg border border-gray-300 bg-white'>
       <form className='space-y-4' onSubmit={handleSubmit}>
-      <h2 className='text-2xl font-bold'>Login</h2>
+        <h2 className='text-2xl font-bold'>Login</h2>
 
 
         <AuthInput autoComplete="email" className="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="email" label="Email" onChange={(e) => setEmail(e.target.value)} placeholder="Email" required type="email" value={email} />

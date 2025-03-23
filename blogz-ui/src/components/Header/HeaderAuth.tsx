@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../store';
 import { logout } from '../../features/auth/authSlice';
@@ -7,8 +7,8 @@ import Modal from 'react-modal';
 import LoginModal from '../LoginModal';
 import { WelcomeUser } from '../WelcomeUser';
 
-const AuthButtons: React.FC = () => {
-  const { user } = useSelector((state: RootState) => state.auth);
+const HeaderAuth = () => {
+  const { user, isLoading } = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch();
   const [isLoginModalOpen, setLoginModalOpen] = useState(false);
   const [isSignupModalOpen, setSignupModalOpen] = useState(false);
@@ -24,6 +24,7 @@ const AuthButtons: React.FC = () => {
     dispatch(logout());
   };
 
+  if (isLoading) return <div>Loading...</div>;
   if (user) return <WelcomeUser user={user} handleLogout={handleLogout} />;
 
   return (
@@ -51,4 +52,4 @@ const AuthButtons: React.FC = () => {
   );
 };
 
-export default AuthButtons;
+export default HeaderAuth;

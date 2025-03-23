@@ -3,7 +3,8 @@ import { User } from '../../types/auth.types';
 
 const initialState = {
   user: null as User | null,
-  isLoading: false,
+  isLoading: true,
+  token: localStorage.getItem('token') ?? '',
 };
 
 
@@ -23,9 +24,14 @@ const authSlice = createSlice({
     },
     logout: (state) => {
       state.user = null;
-    }
+      state.token = '';
+      state.isLoading = false;
+    },
+    setToken: (state, action: PayloadAction<string>) => {
+      state.token = action.payload;
+    },
   },
 });
 
-export const { login, setUser, loginFail, logout } = authSlice.actions;
+export const { login, setUser, loginFail, logout, setToken } = authSlice.actions;
 export default authSlice.reducer;

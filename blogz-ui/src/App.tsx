@@ -2,15 +2,8 @@ import React from 'react';
 import Header from './components/Header/Header';
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useGetUserQuery } from './features/auth/authAPI';
+import { useUserQuery } from './hooks/useUserQuery';
 
-const useUserQuery = () => {
-  const { data, error } = useGetUserQuery(
-    localStorage.getItem('token') ?? '',
-    { skip: !localStorage.getItem('token') }
-  );
-  return { data, error };
-}
 
 
 const App: React.FC = () => {

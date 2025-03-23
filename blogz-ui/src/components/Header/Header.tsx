@@ -1,4 +1,4 @@
-import AuthButtons from './HeaderAuth';
+import HeaderAuth from './HeaderAuth';
 
 interface HeaderProps {
   siteName: string;
@@ -11,7 +11,7 @@ const Header = ({ siteName }: HeaderProps) => {
         <a href="/" className="text-xl font-bold text-gray-900">
           {siteName}
         </a>
-        <AuthButtons />
+        <HeaderAuth />
       </div>
     </header>
   );
