@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../store';
 import { logout } from '../../features/auth/authSlice';
-import { useLogoutMutation } from '../../features/auth/authAPI';
 import SignupModal from '../SignupModal';
 import Modal from 'react-modal';
 import LoginModal from '../LoginModal';
@@ -11,7 +10,6 @@ import { WelcomeUser } from '../WelcomeUser';
 const AuthButtons: React.FC = () => {
   const { user } = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch();
-  const [logoutApi] = useLogoutMutation();
   const [isLoginModalOpen, setLoginModalOpen] = useState(false);
   const [isSignupModalOpen, setSignupModalOpen] = useState(false);
 
@@ -22,12 +20,8 @@ const AuthButtons: React.FC = () => {
 
 
   const handleLogout = async () => {
-    try {
-      await logoutApi().unwrap();
-      dispatch(logout());
-    } catch (err) {
-      console.error('Failed to logout:', err);
-    }
+    localStorage.removeItem('token');
+    dispatch(logout());
   };
 
   if (user) return <WelcomeUser user={user} handleLogout={handleLogout} />;
