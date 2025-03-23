@@ -1,6 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AuthService } from './auth.service';
-import { UserService } from '../user/user.service';
 import { PrismaService } from '../prisma/prisma.service';
 import { JwtModule } from '@nestjs/jwt';
 import { jwtConfig } from './auth.module';
@@ -17,7 +16,7 @@ describe('AuthService', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test
       .createTestingModule({
-        providers: [AuthService, UserService, PrismaService],
+        providers: [AuthService, PrismaService],
         imports: [JwtModule.register(jwtConfig)]
 
       })
@@ -30,11 +29,10 @@ describe('AuthService', () => {
     expect(authService).toBeDefined();
   });
 
-  it('should register a user', async () => {
+  it('should register a user and return an access token', async () => {
     const { email, password, name } = randomUser
-    const user = await authService.register(email, password, name)
-    expect(user.email).toEqual(email)
-    expect(user.name).toEqual(name)
+    const result = await authService.register(email, password, name)
+    expect(result).toHaveProperty('access_token')
   });
 
 });
