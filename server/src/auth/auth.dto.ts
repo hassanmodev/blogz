@@ -14,3 +14,16 @@ export class RegisterDto extends LoginDto {
   @MinLength(2, { message: 'Name must be at least 2 characters long' })
   name: string;
 }
+
+export class UserDto {
+  id: string;
+  name: string;
+  email: string;
+  constructor(
+    user: UserDto
+  ) {
+    this.id = user.id;
+    this.name = user.name;
+    this.email = user.email;
+  }
+}
