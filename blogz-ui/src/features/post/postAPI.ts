@@ -3,6 +3,7 @@ import { Post } from '../../types/post.types';
 
 export const PostApi = createApi({
   reducerPath: 'Post',
+  tagTypes: ['Post', 'PostSingle'],
   baseQuery: fetchBaseQuery({
     baseUrl: 'http://localhost:3000',
     prepareHeaders: (headers) => {
@@ -11,7 +12,6 @@ export const PostApi = createApi({
     }
   }),
 
-  tagTypes: ['Post', 'PostSingle'],
 
   endpoints: (builder) => ({
     getPosts: builder.query<Post[], void>({
@@ -20,8 +20,8 @@ export const PostApi = createApi({
     }),
 
     getPostById: builder.query<Post, string>({
-      query: (token) => ({
-        url: `/posts/${token}`,
+      query: (id) => ({
+        url: `/posts/${id}`,
         method: 'GET',
       }),
       providesTags: ['PostSingle'],
@@ -43,6 +43,15 @@ export const PostApi = createApi({
       invalidatesTags: ['Post'],
     }),
 
+    updatePost: builder.mutation<Post, { id: string, post: Partial<Post> }>({
+      query: (post) => ({
+        url: `/posts/${post.id}`,
+        method: 'PATCH',
+        body: post,
+      }),
+      invalidatesTags: ['Post'],
+    }),
+
     createComment: builder.mutation<void, { postId: string, content: string, commenter: string }>({
       query: ({ postId, content }) => ({
         url: `/posts/${postId}/comments`,
@@ -53,4 +62,4 @@ export const PostApi = createApi({
   }),
 });
 
-export const { useGetPostsQuery, useGetPostByIdQuery, useDeletePostMutation, useCreatePostMutation, useCreateCommentMutation } = PostApi;
+export const { useGetPostsQuery, useGetPostByIdQuery, useDeletePostMutation, useCreatePostMutation, useCreateCommentMutation, useUpdatePostMutation } = PostApi;

@@ -20,9 +20,8 @@ const App: React.FC = () => {
           <Routes>
             <Route path="/" element={<PostList />} />
             <Route path="/post/:id" element={<PostPage />} />
-            <Route path="/create" element={<ProtectedRoute>
-              <CreatePost />
-            </ProtectedRoute>} />
+            <Route path="/create" element={<ProtectedRoute> <CreatePost /> </ProtectedRoute>} />
+            <Route path="/edit/:id" element={<ProtectedRoute> <CreatePost editingPost /> </ProtectedRoute>} />
           </Routes>
         </main>
 

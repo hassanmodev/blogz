@@ -13,7 +13,7 @@ const DeletePost: React.FC<{ post: Post; user: any }> = ({ post, user }) => {
   const handleDelete = async () => {
     if (!window.confirm('Are you sure you want to delete this post?')) return;
     try {
-      await deletePost(post.id);
+      await deletePost(post.id).unwrap();
       dispatch(PostApi.util.invalidateTags(['Post']));
       toast.success('Post deleted successfully');
     } catch (error) {
