@@ -36,7 +36,7 @@ model Comment {
   id        String   @id @default(uuid())
   content   String
   commenter String   @default("Anonymous")
-  post      Post     @relation(fields: [postId], references: [id])
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
   postId    String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
