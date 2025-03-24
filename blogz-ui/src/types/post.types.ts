@@ -10,12 +10,12 @@ export interface Post {
   createdAt: string;
   imageUrl?: string;
   content: string;
-  comments?: Comment[];
+  Comment?: Comment[];
 }
 export interface Comment {
   id: string;
   content: string;
-  author: string;
+  commenter: string;
 }
 export interface PostsState {
   posts: Post[];

@@ -43,4 +43,9 @@ export class PostController {
   deletePost(@Param('id') id: string) {
     return this.postService.deletePost(id);
   }
+
+  @Post(':id/comments')
+  createComment(@Param('id') id: string, @Body() body: { content: string, commenter: string }) {
+    return this.postService.createComment(id, body.content, body.commenter);
+  }
 }

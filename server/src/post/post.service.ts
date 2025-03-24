@@ -17,7 +17,7 @@ export class PostService {
   }
 
   async getPostById(id: string) {
-    return this.prisma.post.findUnique({ where: { id }, include: { author: true } });
+    return this.prisma.post.findUnique({ where: { id }, include: { author: true, Comment: true } });
   }
 
   async updatePost(id: string, title: string, content: string) {
@@ -37,5 +37,15 @@ export class PostService {
       }
       throw error
     }
+  }
+
+  async createComment(postId: string, content: string, commenter: string) {
+    return this.prisma.comment.create({
+      data: {
+        content,
+        postId,
+        commenter,
+      },
+    });
   }
 }

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useRegisterMutation } from "../features/auth/authAPI";
 import { toast } from "react-toastify";
 
-type InputProps =  {
+type InputProps = {
   label: string;
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
@@ -20,18 +20,7 @@ export const MyInput = (props: InputProps) => {
       <label htmlFor={props.id} className='block text-sm font-medium text-gray-700'>
         {props.label}
       </label>
-      <Element
-        {...props}
-        type={props.type}
-        id={props.id}
-        name={props.id}
-        autoComplete={props.autoComplete}
-        required={props.required}
-        className={props.className}
-        value={props.value}
-        onChange={props.onChange}
-        placeholder={props.placeholder}
-      />
+      <Element {...props} />
     </div>
   );
 }

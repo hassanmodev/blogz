@@ -1,19 +1,10 @@
 import { useParams } from "react-router";
-import { useGetPostByIdQuery } from "../features/post/postAPI";
-import { Comment, getPostImageUrl } from "../types/post.types";
+import { useGetPostByIdQuery } from "../../features/post/postAPI";
+import { getPostImageUrl } from "../../types/post.types";
+import Comments from "./Comments";
+import CreateComment from "./CreateComment";
 
-const Comments = ({ comments }: { comments?: Comment[] }) => {
-  if (!comments) comments = [];
-  return <div className="mt-12">
-    <h2 className="text-xl font-bold mb-4">Comments</h2>
-    {!comments.length && <div>No comments yet.</div>}
-    {comments.map((comment) => (
-      <div key={comment.id} className="bg-gray-100 p-4 rounded-lg mb-4">
-        <div className="text-gray-600">{comment.content}</div>
-      </div>
-    ))}
-  </div>
-}
+
 
 const PostPage = () => {
   const postId = useParams().id;
@@ -38,7 +29,8 @@ const PostPage = () => {
       <strong>Posted on:</strong> {new Date(post.createdAt).toLocaleString()}
     </div>
 
-    <Comments comments={post.comments} />
+    <CreateComment postId={post.id} />
+    <Comments comments={post.Comment} />
 
   </div>;
 }

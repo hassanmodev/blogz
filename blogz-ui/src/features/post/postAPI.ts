@@ -10,24 +10,30 @@ export const PostApi = createApi({
       return headers;
     }
   }),
-  tagTypes: ['Post'],
+
+  tagTypes: ['Post', 'PostSingle'],
+
   endpoints: (builder) => ({
     getPosts: builder.query<Post[], void>({
       query: () => '/posts',
       providesTags: ['Post'],
     }),
+
     getPostById: builder.query<Post, string>({
       query: (token) => ({
         url: `/posts/${token}`,
         method: 'GET',
       }),
+      providesTags: ['PostSingle'],
     }),
+
     deletePost: builder.mutation<void, string>({
       query: (id) => ({
         url: `/posts/${id}`,
         method: 'DELETE',
       }),
     }),
+
     createPost: builder.mutation<Post, Partial<Post>>({
       query: (post) => ({
         url: '/posts',
@@ -36,7 +42,15 @@ export const PostApi = createApi({
       }),
       invalidatesTags: ['Post'],
     }),
+
+    createComment: builder.mutation<void, { postId: string, content: string, commenter: string }>({
+      query: ({ postId, content }) => ({
+        url: `/posts/${postId}/comments`,
+        method: 'POST',
+        body: { content },
+      }),
+    }),
   }),
 });
 
-export const { useGetPostsQuery, useGetPostByIdQuery, useDeletePostMutation, useCreatePostMutation } = PostApi;
+export const { useGetPostsQuery, useGetPostByIdQuery, useDeletePostMutation, useCreatePostMutation, useCreateCommentMutation } = PostApi;
