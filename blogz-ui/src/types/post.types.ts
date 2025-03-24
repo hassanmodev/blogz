@@ -23,4 +23,4 @@ export interface PostsState {
   error: string | null;
 }
 
-export const getPostImageUrl = (post: Post) => post.imageUrl || `https://picsum.photos/seed/${post.id}/1200/900`;
+export const getPostImageUrl = (post?: Post) => post?.imageUrl || `https://picsum.photos/seed/${post?.id ?? '0'}/1200/900`;

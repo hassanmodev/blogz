@@ -1,6 +1,6 @@
 import { useParams } from "react-router";
 import { useGetPostByIdQuery } from "../features/post/postAPI";
-import { Comment } from "../types/post.types";
+import { Comment, getPostImageUrl } from "../types/post.types";
 
 const Comments = ({ comments }: { comments?: Comment[] }) => {
   if (!comments) comments = [];
@@ -18,12 +18,15 @@ const Comments = ({ comments }: { comments?: Comment[] }) => {
 const PostPage = () => {
   const postId = useParams().id;
   const { data: post, isLoading } = useGetPostByIdQuery(postId as string);
+  const image = getPostImageUrl(post);
 
   if (isLoading || !post) return <>....</>
   return <div className="my-12">
     <h1 className="text-3xl font-bold text-gray-900 mb-8">
       {post.title}
     </h1>
+
+    {image && <img src={image} alt={post.title} className="mb-4 w-full h-96 object-cover rounded-lg" />}
 
     <div className="text-gray-600 mb-4">
       {post.content}
