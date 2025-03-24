@@ -11,6 +11,7 @@ const DeletePost: React.FC<{ post: Post; user: any }> = ({ post, user }) => {
   const [deletePost] = useDeletePostMutation();
   const dispatch = useDispatch();
   const handleDelete = async () => {
+    if (!window.confirm('Are you sure you want to delete this post?')) return;
     try {
       await deletePost(post.id);
       dispatch(PostApi.util.invalidateTags(['Post']));
@@ -20,7 +21,7 @@ const DeletePost: React.FC<{ post: Post; user: any }> = ({ post, user }) => {
       console.error(error);
     }
   };
-  
+
   if (!user) return null;
   return (
     <button
@@ -46,15 +47,15 @@ const PostItem: React.FC<PostsItemProps> = ({ post }) => {
     <article className="bg-white rounded-lg shadow-md overflow-hidden relative">
       <DeletePost post={post} user={user} />
       <Link to={`/post/${post.id}`} className="">
-      {imageUrl && (
-        <div className="h-48 w-full overflow-hidden">
-          <img
-            src={imageUrl}
-            alt={post.title}
-            className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-          />
-        </div>
-      )}
+        {imageUrl && (
+          <div className="h-48 w-full overflow-hidden">
+            <img
+              src={imageUrl}
+              alt={post.title}
+              className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+            />
+          </div>
+        )}
       </Link>
       <div className="p-6">
         <h2 className="text-xl font-semibold mb-2 text-gray-900">
