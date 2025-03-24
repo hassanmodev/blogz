@@ -1,12 +1,23 @@
 import React, { useState } from 'react';
 import { MyInput } from './RegisterModal';
+import { useCreatePostMutation } from '../features/post/postAPI';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router';
 
 const CreatePost = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const [createPostMutate] = useCreatePostMutation();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const post = { title, content };
+    const { id } = await createPostMutate(post).unwrap()
+    setTitle('');
+    setContent('');
+    toast.success('Post created successfully!');
+    navigate(`/post/${id}`);
   };
 
   return (
@@ -23,7 +34,8 @@ const CreatePost = () => {
           required
           type='text'
           value={title}
-          minLength={12}
+          minLength={10}
+          maxLength={50}
         />
         <MyInput
           className='mt-2 mb-6 w-full bg-white border border-gray-300 rounded-md px-4 py-2'
@@ -35,7 +47,8 @@ const CreatePost = () => {
           required
           value={content}
           type='textarea'
-          minLength={100}
+          minLength={50}
+          maxLength={500}
         />
         <button
           className='bg-indigo-500 text-white mb-4 px-4 py-2 rounded-md w-full hover:bg-indigo-600 cursor-pointer'

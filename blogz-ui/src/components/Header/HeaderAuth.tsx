@@ -7,6 +7,11 @@ import Modal from 'react-modal';
 import LoginModal from '../LoginModal';
 import { WelcomeUser } from '../WelcomeUser';
 
+if (Modal.defaultStyles.overlay) {
+  Modal.defaultStyles.overlay.backgroundColor = 'rgba(0,0,20,0.5)';
+  Modal.defaultStyles.overlay.zIndex = 50;
+}
+
 const HeaderAuth = () => {
   const { user, isLoading } = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch();

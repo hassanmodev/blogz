@@ -21,15 +21,21 @@ const PostPage = () => {
   const image = getPostImageUrl(post);
 
   if (isLoading || !post) return <>....</>
-  return <div className="my-12">
+  return <div className="my-12 break-words">
     <h1 className="text-3xl font-bold text-gray-900 mb-8">
       {post.title}
     </h1>
 
-    {image && <img src={image} alt={post.title} className="mb-4 w-full h-96 object-cover rounded-lg" />}
+    {image && <img src={image} alt={post.title} className="mb-12 w-full h-96 object-cover rounded-lg" />}
 
     <div className="text-gray-600 mb-4">
       {post.content}
+    </div>
+
+    <div className="text-gray-600 mb-4">
+      <strong>Author:</strong> {post.author.name}
+      <br />
+      <strong>Posted on:</strong> {new Date(post.createdAt).toLocaleString()}
     </div>
 
     <Comments comments={post.comments} />
