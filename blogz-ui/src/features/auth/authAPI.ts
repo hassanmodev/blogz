@@ -1,9 +1,11 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { RegisterUser } from '../../types/auth.types';
-
+const localhost = 'http://localhost:3000';
+const idDev = window.location.hostname === 'localhost';
+export const baseUrl = idDev ? localhost : 'https://blogz-joww.onrender.com';
 export const authApi = createApi({
   reducerPath: 'authApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3000' }),
+  baseQuery: fetchBaseQuery({ baseUrl }),
   endpoints: (builder) => ({
     login: builder.mutation<{ access_token: string }, { email: string; password: string }>({
       query: (credentials) => ({
