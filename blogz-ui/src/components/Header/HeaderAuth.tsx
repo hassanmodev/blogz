@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../store';
-import { logout } from '../../features/auth/authSlice';
-import SignupModal from '../SignupModal';
+import { logout, setUser } from '../../features/auth/authSlice';
+import SignupModal from '../RegisterModal';
 import Modal from 'react-modal';
 import LoginModal from '../LoginModal';
 import { WelcomeUser } from '../WelcomeUser';
@@ -21,6 +21,7 @@ const HeaderAuth = () => {
 
   const handleLogout = async () => {
     localStorage.removeItem('token');
+    dispatch(setUser(null));
     dispatch(logout());
   };
 

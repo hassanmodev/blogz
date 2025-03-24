@@ -13,7 +13,7 @@ type InputProps = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputEle
   placeholder: string;
   id: string;
 }
-export const AuthInput = (props: InputProps) => {
+export const MyInput = (props: InputProps) => {
   return (
     <div className='mb-4'>
       <label htmlFor={props.id} className='block text-sm font-medium text-gray-700'>
@@ -57,9 +57,9 @@ const RegisterModal = (props: { closeModal: () => void }) => {
     <div className='min-w-lg p-4 mx-auto rounded-md shadow-lg border border-gray-300 bg-white'>
       <form className='space-y-4' onSubmit={handleSubmit}>
         <h2 className='text-2xl font-bold'>Register</h2>
-        <AuthInput label='Full Name' value={name} onChange={(e) => setName(e.target.value)} type='text' autoComplete='name' required className='mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm' placeholder='Full Name' id='name' />
-        <AuthInput label='Email' value={email} onChange={(e) => setEmail(e.target.value)} type='email' autoComplete='email' required className='mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm' placeholder='Email' id='email' />
-        <AuthInput label='Password' value={password} onChange={(e) => setPassword(e.target.value)} type='password' autoComplete='password' required className='mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm' placeholder='Password' id='password' />
+        <MyInput label='Full Name' value={name} onChange={(e) => setName(e.target.value)} type='text' autoComplete='name' required className='mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm' placeholder='Full Name' id='name' />
+        <MyInput label='Email' value={email} onChange={(e) => setEmail(e.target.value)} type='email' autoComplete='email' required className='mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm' placeholder='Email' id='email' />
+        <MyInput label='Password' value={password} onChange={(e) => setPassword(e.target.value)} type='password' autoComplete='password' required className='mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm' placeholder='Password' id='password' />
 
         <div className='flex items-center justify-between'>
           <div className='text-sm'>

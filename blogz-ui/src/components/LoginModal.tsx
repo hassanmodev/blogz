@@ -3,7 +3,7 @@ import { useLoginMutation } from "../features/auth/authAPI";
 import { useDispatch } from "react-redux";
 import { login, setToken } from "../features/auth/authSlice";
 import { toast } from "react-toastify";
-import { AuthInput } from "./SignupModal";
+import { MyInput } from "./RegisterModal";
 
 const LoginModal = (props: { closeModal: () => void }) => {
   const [email, setEmail] = useState('test@test.com');
@@ -35,8 +35,8 @@ const LoginModal = (props: { closeModal: () => void }) => {
         <h2 className='text-2xl font-bold'>Login</h2>
 
 
-        <AuthInput autoComplete="email" className="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="email" label="Email" onChange={(e) => setEmail(e.target.value)} placeholder="Email" required type="email" value={email} />
-        <AuthInput autoComplete="password" className="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="password" label="Password" onChange={(e) => setPassword(e.target.value)} placeholder="Password" required type="password" value={password} />
+        <MyInput autoComplete="email" className="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="email" label="Email" onChange={(e) => setEmail(e.target.value)} placeholder="Email" required type="email" value={email} />
+        <MyInput autoComplete="password" className="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="password" label="Password" onChange={(e) => setPassword(e.target.value)} placeholder="Password" required type="password" value={password} />
 
         <div className='flex items-center justify-between'>
           <div className='text-sm'>
