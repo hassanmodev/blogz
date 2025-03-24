@@ -54,10 +54,10 @@ export const PostApi = createApi({
     }),
 
     createComment: builder.mutation<void, { postId: string, content: string, commenter: string }>({
-      query: ({ postId, content }) => ({
+      query: ({ postId, content, commenter }) => ({
         url: `/posts/${postId}/comments`,
         method: 'POST',
-        body: { content },
+        body: { content, commenter },
       }),
     }),
   }),
