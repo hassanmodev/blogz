@@ -5,22 +5,27 @@
 This project is a simple blogging platform where users can create, view, and manage blog posts. The platform is built using the following technologies:
 
 
+Live on vercel: https://blogz-ashen.vercel.app/
+Backend on render: https://blogz-joww.onrender.com/
+
+
 ### Prerequisites
 
 - Node.js (>=14.x)
 - PostgreSQL
+- Yarn or npm
 
 ### Backend Setup
 
 1. Clone the repository:
     ```bash
     git clone https://github.com/hassanmodev/blogz
-    cd blogz/server
+    cd server
     ```
 
 2. Install dependencies:
     ```bash
-    npm install
+    yarn install
     ```
 
 3. Set up environment variables:
@@ -38,24 +43,24 @@ This project is a simple blogging platform where users can create, view, and man
 
 5. Start the backend server:
     ```bash
-    npm run dev
+    yarn run dev
     ```
 
 ### Frontend Setup
 
 1. Navigate to the `client` directory:
     ```bash
-    cd ./blogz-ui
+    cd blogz-ui
     ```
 
 2. Install dependencies:
     ```bash
-    npm install
+    yarn install
     ```
 
 3. Start the frontend development server:
     ```bash
-    npm start
+    yarn start
     ```
 
 ## Approach
@@ -70,4 +75,4 @@ The backend is built using Nestjs. PostgreSQL is used as the database, and Prism
 
 ### Deployment
 
-The project was deployed on Render for the  backend and vercel for the frontend.
+The project was deployed on Render for the backend and vercel for the frontend.
