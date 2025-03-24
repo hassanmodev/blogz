@@ -1,3 +1,5 @@
+# A test file for the REST Client extension
+# https://marketplace.visualstudio.com/items?itemName=humao.rest-client
 @token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imdvb2RAbWFpbC5jb20iLCJzdWIiOiI1MjAwODcwNy1jZWQwLTRmODEtODQwMi0xYTBjMTVhZmY5YTQiLCJpYXQiOjE3NDI1MjA5MjgsImV4cCI6MTc0MjUyNDUyOH0.Sej3UCEfvVfOHGquXcanvSpPgrhFq9dwi0g3W8OPy7g
 
 POST http://localhost:3000/auth/login
